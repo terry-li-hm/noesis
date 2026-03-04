@@ -1,9 +1,11 @@
 use anyhow::Result;
 use clap::{Parser, Subcommand};
+use owo_colors::OwoColorize;
 
 mod client;
 mod display;
 mod log;
+mod save;
 
 #[derive(Parser)]
 #[command(
@@ -40,6 +42,9 @@ enum Command {
     Research {
         /// The query to research
         query: String,
+        /// Save output to ~/docs/solutions/research/
+        #[arg(long)]
+        save: bool,
     },
     /// Reasoning (sonar-reasoning-pro, ~$0.01)
     Reason {
@@ -71,7 +76,7 @@ fn query_text(cmd: &Command) -> Option<&str> {
     match cmd {
         Command::Search { query }
         | Command::Ask { query }
-        | Command::Research { query }
+        | Command::Research { query, .. }
         | Command::Reason { query } => Some(query),
         Command::Log { .. } => None,
     }
@@ -101,6 +106,11 @@ fn main() -> Result<()> {
         println!("{}", serde_json::to_string_pretty(&response)?);
     } else {
         display::display_response(mode, &response);
+    }
+
+    if let Command::Research { save: true, query } = &cli.command {
+        let path = save::save_research(query, &response, est_cost)?;
+        eprintln!("\n{} {}", "saved →".dimmed(), path.display());
     }
 
     if !cli.no_log {
