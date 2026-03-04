@@ -7,7 +7,7 @@ mod log;
 
 #[derive(Parser)]
 #[command(
-    name = "compound-pplx",
+    name = "noesis",
     version,
     about = "Perplexity API CLI — search, ask, research, and reason from your terminal"
 )]

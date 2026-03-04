@@ -1,16 +1,16 @@
 [package]
-name = "compound-perplexity"
-version = "0.2.0"
+name = "noesis"
+version = "0.3.0"
 edition = "2024"
 description = "CLI for the Perplexity API — search, ask, research, and reason from your terminal."
 license = "MIT"
-repository = "https://github.com/terry-li-hm/compound-perplexity"
-homepage = "https://github.com/terry-li-hm/compound-perplexity"
-keywords = ["perplexity", "ai", "search", "cli"]
+repository = "https://github.com/terry-li-hm/noesis"
+homepage = "https://github.com/terry-li-hm/noesis"
+keywords = ["perplexity", "ai", "search", "cli", "research"]
 categories = ["command-line-utilities"]
 
 [[bin]]
-name = "compound-pplx"
+name = "noesis"
 path = "src/main.rs"
 
 [dependencies]

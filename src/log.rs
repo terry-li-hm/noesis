@@ -22,7 +22,7 @@ struct LogEntry {
 fn log_path() -> Result<PathBuf> {
     let data_dir = dirs::data_dir()
         .context("Could not determine data directory")?
-        .join("pplx");
+        .join("noesis");
     fs::create_dir_all(&data_dir)?;
     Ok(data_dir.join("log.jsonl"))
 }
