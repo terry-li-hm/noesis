@@ -17,10 +17,10 @@ fn slugify(query: &str) -> String {
         .collect::<Vec<_>>()
         .join("-");
     // Truncate to 60 chars at a word boundary
-    if slug.len() <= 60 {
+    if slug.len() <= 80 {
         slug
     } else {
-        let truncated = &slug[..60];
+        let truncated = &slug[..80];
         match truncated.rfind('-') {
             Some(pos) => truncated[..pos].to_string(),
             None => truncated.to_string(),
