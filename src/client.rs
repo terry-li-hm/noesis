@@ -22,7 +22,13 @@ impl PplxClient {
     pub fn query(&self, model: &str, query: &str) -> Result<Value> {
         let body = serde_json::json!({
             "model": model,
-            "messages": [{"role": "user", "content": query}]
+            "messages": [
+                {
+                    "role": "system",
+                    "content": "Answer accurately based on what you can find. If you cannot confirm specific facts (e.g. whether a business exists at a location), say explicitly that you could not confirm it — do not assert absence. Distinguish between 'not found in results' and 'does not exist'."
+                },
+                {"role": "user", "content": query}
+            ]
         });
 
         let resp = self
