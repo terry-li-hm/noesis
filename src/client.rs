@@ -35,6 +35,7 @@ impl PplxClient {
             .client
             .post("https://api.perplexity.ai/chat/completions")
             .bearer_auth(&self.api_key)
+            .header("X-Pplx-Integration", "noesis")
             .json(&body)
             .send()
             .context("Failed to reach Perplexity API")?;
